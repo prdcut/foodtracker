@@ -1,0 +1,16 @@
+$primary: #e65c4f;
+$secondary: #78a6c8;
+$info: #326789;
+
+@import "node_modules/bootstrap/scss/bootstrap";
+@import url("http://fonts.cdnfonts.com/css/sgt-jhon-o");
+
+h1 {
+  font-family: "SGT Jhon O", sans-serif;
+}
+
+body,
+html {
+  height: 100%;
+  background-color: #e9eef4;
+}
