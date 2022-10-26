@@ -1,34 +1,44 @@
-import Vue from "vue";
-import VueRouter, { RouteConfig } from "vue-router";
-import DashboardView from "../views/DashboardView.vue";
+import Vue from 'vue';
+import VueRouter, { RouteConfig } from 'vue-router';
+import DashboardView from '../views/DashboardView.vue';
 
 Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
   {
-    path: "/",
-    name: "dashboard",
+    path: '/',
+    name: 'dashboard',
     component: DashboardView,
   },
   {
-    path: "/diary",
-    name: "diary",
-    component: () => import("../views/DiaryView.vue"),
+    path: '/register',
+    name: 'register',
+    component: () => import('../views/RegisterView.vue'),
   },
   {
-    path: "/foods",
-    name: "foods",
-    component: () => import("../views/FoodsView.vue"),
+    path: '/login',
+    name: 'login',
+    component: () => import('../views/LoginView.vue'),
   },
   {
-    path: "/profile",
-    name: "profile",
-    component: () => import("../views/ProfileView.vue"),
+    path: '/diary',
+    name: 'diary',
+    component: () => import('../views/DiaryView.vue'),
+  },
+  {
+    path: '/foods',
+    name: 'foods',
+    component: () => import('../views/FoodsView.vue'),
+  },
+  {
+    path: '/profile',
+    name: 'profile',
+    component: () => import('../views/ProfileView.vue'),
   },
 ];
 
 const router = new VueRouter({
-  mode: "history",
+  mode: 'history',
   base: process.env.BASE_URL,
   routes,
 });
