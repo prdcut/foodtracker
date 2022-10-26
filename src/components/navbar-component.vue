@@ -1,7 +1,7 @@
 <template>
   <b-navbar type="dark" variant="primary" class="py-0">
     <b-navbar-nav class="mx-auto">
-      <b-nav-item href="/dashboard">
+      <b-nav-item href="/">
         <div class="d-flex flex-column align-items-center">
           <unicon name="create-dashboard" fill="#e9eef4" />
           <small>Dashboard</small>
