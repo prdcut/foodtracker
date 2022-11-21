@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
-import DashboardView from '../views/DashboardView.vue';
+import DashboardBase from '../views/DashboardView/DashboardBase.vue';
 
 Vue.use(VueRouter);
 
@@ -8,7 +8,7 @@ const routes: Array<RouteConfig> = [
   {
     path: '/',
     name: 'dashboard',
-    component: DashboardView,
+    component: DashboardBase,
   },
   {
     path: '/register',
