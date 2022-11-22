@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
-import DashboardView from '../views/DashboardView.vue';
+import DashboardView from '../views/DashboardView/DashboardView.vue';
 
 Vue.use(VueRouter);
 

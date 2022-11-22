@@ -7,6 +7,10 @@ $light: #e9eef4;
 @import url('http://fonts.cdnfonts.com/css/sgt-jhon-o');
 
 h1,
+h2,
+h3,
+h4,
+h5,
 h6 {
   font-family: 'SGT Jhon O', sans-serif;
 }
@@ -39,6 +43,21 @@ p {
 hr {
   border-top: 0px;
 }
+
+td {
+  font-size: 16px;
+  font-family: 'SGT Jhon O', sans-serif;
+}
+
+th {
+  font-size: 14px;
+  font-family: 'SGT Jhon O', sans-serif;
+}
+
+tr {
+  border-color: $primary;
+}
+
 .form-control.is-invalid {
   background-image: none;
   border-color: $primary;

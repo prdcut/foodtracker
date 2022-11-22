@@ -15,13 +15,19 @@ import {
   uniDiary,
   uniPizzaSlice,
   uniUser,
+  uniEditAlt,
+  uniSave,
 } from 'vue-unicons/dist/icons';
 
-Unicon.add([uniCreateDashboard, uniDiary, uniPizzaSlice, uniUser]);
-Vue.use(Unicon, {
-  height: 32,
-  width: 32,
-});
+Unicon.add([
+  uniCreateDashboard,
+  uniDiary,
+  uniPizzaSlice,
+  uniUser,
+  uniEditAlt,
+  uniSave,
+]);
+Vue.use(Unicon, {});
 
 Vue.config.productionTip = false;
 Vue.use(BootstrapVue);

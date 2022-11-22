@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosStatic } from 'axios';
+import { IMacros, IUser } from '@/models/model';
 
 export default class ApiService {
   protected url = 'https://foodtrackbackend.herokuapp.com';
@@ -25,5 +26,21 @@ export default class ApiService {
     const url = `${this.url}/users`;
     const httpResponse = await this.$http.post(url, data);
     return httpResponse;
+  }
+
+  async getUserData(username: string | null): Promise<IUser> {
+    // console.log('getUserData');
+
+    const url = `${this.url}/users/${username}`;
+    const httpResponse = await this.$http.get(url, this.defaultConfig);
+    return httpResponse.data;
+  }
+
+  async putUserData(username: string | null, data: IMacros): Promise<IUser> {
+    // console.log('putUserData', data);
+
+    const url = `${this.url}/users/${username}`;
+    const httpResponse = await this.$http.put(url, data, this.defaultConfig);
+    return httpResponse.data;
   }
 }
