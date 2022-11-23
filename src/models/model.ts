@@ -8,7 +8,7 @@ export interface IUser {
   currentWeight?: number | null;
   goalWeight?: number | null;
   macros?: IMacros | null;
-  diary?: IDiaryEntry | null;
+  diary?: [IDiaryEntry] | [];
 }
 
 export class User implements IUser {
@@ -21,7 +21,7 @@ export class User implements IUser {
   public currentWeight?: number | null;
   public goalWeight?: number | null;
   public macros?: IMacros | null;
-  public diary?: IDiaryEntry | null;
+  public diary?: [IDiaryEntry] | [];
 
   constructor(user?: User) {
     this.username = user?.username || '';
@@ -33,7 +33,7 @@ export class User implements IUser {
     this.currentWeight = user?.currentWeight || null;
     this.goalWeight = user?.goalWeight || null;
     this.macros = user?.macros || null;
-    this.diary = user?.diary || null;
+    this.diary = user?.diary || [];
   }
 }
 

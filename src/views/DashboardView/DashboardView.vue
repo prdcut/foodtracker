@@ -20,7 +20,7 @@
         <!-- Second row -->
         <b-row>
           <b-col md="6" class="px-4 px-md-2 pb-3">
-            <!-- <weight-progress /> -->
+            <weight-progress />
           </b-col>
           <b-col md="6" class="px-4 px-md-2 pb-3">
             <!-- <week-progress /> -->
@@ -34,7 +34,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import MacrosCalculator from './MacrosCalculator.vue';
-// import WeightProgress from './WeightProgress.vue';
+import WeightProgress from './WeightProgress.vue';
 // import WeekProgress from './WeekProgress.vue';
 // import RemaningCalories from './RemaningCalories.vue';
 // import RemaningMacros from './RemainingMacros.vue';
@@ -42,7 +42,7 @@ import MacrosCalculator from './MacrosCalculator.vue';
 @Component({
   components: {
     MacrosCalculator,
-    // WeightProgress,
+    WeightProgress,
     // WeekProgress,
     // RemaningCalories,
     // RemaningMacros,
