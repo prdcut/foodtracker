@@ -8,7 +8,7 @@
         <!-- First row -->
         <b-row>
           <b-col md="4" class="px-4 px-md-2 pb-3">
-            <!-- <remaning-calories /> -->
+            <remaining-calories />
           </b-col>
           <b-col md="4" class="px-4 px-md-2 pb-3">
             <!-- <remaning-macros /> -->
@@ -36,7 +36,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import MacrosCalculator from './MacrosCalculator.vue';
 import WeightProgress from './WeightProgress.vue';
 import WeekProgress from './WeekProgress.vue';
-// import RemaningCalories from './RemaningCalories.vue';
+import RemainingCalories from './RemainingCalories.vue';
 // import RemaningMacros from './RemainingMacros.vue';
 
 @Component({
@@ -44,7 +44,7 @@ import WeekProgress from './WeekProgress.vue';
     MacrosCalculator,
     WeightProgress,
     WeekProgress,
-    // RemaningCalories,
+    RemainingCalories,
     // RemaningMacros,
   },
 })

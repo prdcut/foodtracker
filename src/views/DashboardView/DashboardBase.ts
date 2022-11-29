@@ -24,6 +24,10 @@ export default class DashboardBaseComponent extends Vue {
     return localStorage.getItem('user')!.slice(1, -1);
   }
 
+  get todayFoodDiary() {
+    return this.filterFoodDiary(this.DATES.isoDates.getToday());
+  }
+
   validationState({
     dirty,
     validated,
@@ -34,6 +38,18 @@ export default class DashboardBaseComponent extends Vue {
     valid: boolean;
   }) {
     return dirty || validated ? valid : null;
+  }
+  filterFoodDiary(date: string) {
+    if (this.userProfile)
+      return this.userProfile.diary!.filter(
+        (x) => x.type === 'food' && x.date === date
+      );
+    return [];
+  }
+
+  calcPercentage(a: number, b: number) {
+    if (b === 0 || a == null) return '--';
+    return ((100 * a) / b).toFixed();
   }
 
   async loadUser() {
