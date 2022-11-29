@@ -18,6 +18,7 @@ import {
   uniEditAlt,
   uniSave,
   uniPlus,
+  uniPercentage,
 } from 'vue-unicons/dist/icons';
 
 Unicon.add([
@@ -28,6 +29,7 @@ Unicon.add([
   uniEditAlt,
   uniSave,
   uniPlus,
+  uniPercentage,
 ]);
 Vue.use(Unicon, {});
 
