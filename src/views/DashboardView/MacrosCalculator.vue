@@ -1,5 +1,5 @@
 <template>
-  <b-card border-variant="primary" class="h-100" v-if="userProfile">
+  <b-card border-variant="primary" class="h-100">
     <!-- Title -->
     <b-row>
       <b-col cols="10">
@@ -64,38 +64,37 @@
 
         <!-- Macros table -->
         <b-row>
-          <template v-if="userProfile.macros">
-            <b-table
-              :items="userMacrosTable"
-              responsive
-              show-empty
-              empty-text="Loading..."
-              class="mb-0"
-            ></b-table>
+          <template v-if="loading">
+            <b-spinner
+              variant="primary"
+              style="width: 3rem; height: 3rem"
+              class="mx-auto"
+            />
           </template>
-
           <template v-else>
-            <b-table
-              :items="calculateMacrosTable"
-              responsive
-              show-empty
-              empty-text="Loading..."
-              class="mb-0"
-            ></b-table>
+            <template v-if="userProfile.macros">
+              <b-table
+                :items="userMacrosTable"
+                responsive
+                show-empty
+                empty-text="Loading..."
+                class="mb-0"
+              ></b-table>
+            </template>
+
+            <template v-else>
+              <b-table
+                :items="calculateMacrosTable"
+                responsive
+                show-empty
+                empty-text="Loading..."
+                class="mb-0"
+              ></b-table>
+            </template>
           </template>
         </b-row>
       </b-col>
     </b-row>
-  </b-card>
-
-  <b-card border-variant="primary" v-else>
-    <div class="d-flex">
-      <b-spinner
-        variant="primary"
-        style="width: 3rem; height: 3rem"
-        class="mx-auto"
-      />
-    </div>
   </b-card>
 </template>
 

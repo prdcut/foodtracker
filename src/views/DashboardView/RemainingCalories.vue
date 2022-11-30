@@ -1,16 +1,23 @@
 <template>
-  <b-card border-variant="primary" class="h-100" v-if="userProfile">
+  <b-card border-variant="primary" class="h-100">
     <!-- Title -->
     <h5 class="mb-2">today's calories</h5>
     <!-- chart -->
     <b-row style="height: 80%">
-      <calories-chart :eatenCalories="todayCaloriesPercentage" />
+      <template v-if="loading">
+        <b-spinner
+          variant="primary"
+          style="width: 3rem; height: 3rem"
+          class="mx-auto"
+        />
+      </template>
 
-      <h6 class="text-center mb-0">
-        <small>
+      <template v-else>
+        <calories-chart :eatenCalories="todayCaloriesPercentage" />
+        <h6 class="text-center mb-0">
           {{ todayEatenCalories }} / {{ userProfile.macros.calories }} kcal
-        </small>
-      </h6>
+        </h6>
+      </template>
     </b-row>
   </b-card>
 </template>

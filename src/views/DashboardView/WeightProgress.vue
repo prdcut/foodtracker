@@ -1,9 +1,12 @@
 <template>
-  <b-card border-variant="primary" class="h-100" v-if="userProfile">
+  <b-card border-variant="primary" class="h-100">
     <!-- Title -->
     <b-row>
       <b-col cols="10">
-        <h5 class="mb-0">weight {{ userProfile.currentWeight }} kg</h5>
+        <h5 class="mb-0">
+          weight
+          <span v-if="!loading">{{ userProfile.currentWeight }}</span> kg
+        </h5>
       </b-col>
       <b-col class="d-flex flex-row-reverse">
         <b-button v-b-toggle.enterWeight variant="link" class="p-0">
@@ -69,10 +72,21 @@
       </b-col>
     </b-row>
     <!-- chart -->
-    <weight-chart
-      :weightValues="weightValues"
-      :datesCategories="datesCategories"
-    />
+    <b-row class="d-flex justify-content-between align-items-center">
+      <template v-if="loading">
+        <b-spinner
+          variant="primary"
+          style="width: 3rem; height: 3rem"
+          class="mx-auto"
+        />
+      </template>
+      <template v-else>
+        <weight-chart
+          :weightValues="weightValues"
+          :datesCategories="datesCategories"
+        />
+      </template>
+    </b-row>
   </b-card>
 </template>
 
@@ -116,6 +130,8 @@ export default class WeightProgressComponent extends DashboardBaseComponent {
 
     const dateOut = this.DATES.isoDates.getToday();
 
+    this.loading = true;
+
     try {
       const data = await this.apiService.postDiaryEntry(this.username, {
         type: 'weight',
@@ -129,10 +145,14 @@ export default class WeightProgressComponent extends DashboardBaseComponent {
     } catch (error) {
       console.log(error);
     }
+
+    this.loading = false;
   }
 
   async updateCurrentWeight() {
     // console.log('updateCurrentWeight');
+
+    this.loading = true;
 
     try {
       const data = await this.apiService.putUserData(this.username, {
@@ -145,6 +165,8 @@ export default class WeightProgressComponent extends DashboardBaseComponent {
     } catch (error) {
       console.log(error);
     }
+
+    this.loading = false;
   }
 }
 </script>
