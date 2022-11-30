@@ -23,7 +23,7 @@ const routes: Array<RouteConfig> = [
   {
     path: '/diary',
     name: 'diary',
-    component: () => import('../views/DiaryView.vue'),
+    component: () => import('../views/DiaryView/DiaryView.vue'),
   },
   {
     path: '/foods',
