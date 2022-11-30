@@ -1,5 +1,5 @@
 <template>
-  <b-card border-variant="primary" class="h-100" v-if="userProfile">
+  <b-card border-variant="primary" class="h-100">
     <!-- Title -->
     <b-row>
       <b-col cols="10">
@@ -10,10 +10,21 @@
       </b-col>
     </b-row>
     <!-- chart -->
-    <week-chart
-      :caloriesVaslues="weekCaloriesPercentage"
-      :datesCategories="lastWeeksDaysNames"
-    />
+    <b-row class="d-flex justify-content-between align-items-center h-100">
+      <template v-if="loading">
+        <b-spinner
+          variant="primary"
+          style="width: 3rem; height: 3rem"
+          class="mx-auto"
+        />
+      </template>
+      <template v-else>
+        <week-chart
+          :caloriesVaslues="weekCaloriesPercentage"
+          :datesCategories="lastWeeksDaysNames"
+        />
+      </template>
+    </b-row>
   </b-card>
 </template>
 

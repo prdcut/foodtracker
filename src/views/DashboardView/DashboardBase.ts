@@ -55,6 +55,8 @@ export default class DashboardBaseComponent extends Vue {
   async loadUser() {
     // console.log('loadUser');
 
+    this.loading = true;
+
     try {
       const data = await this.apiService.getUserData(this.username);
 
@@ -64,6 +66,8 @@ export default class DashboardBaseComponent extends Vue {
     } catch (error) {
       console.log(error);
     }
+
+    this.loading = false;
   }
 
   created() {

@@ -11,7 +11,7 @@
             <remaining-calories />
           </b-col>
           <b-col md="4" class="px-4 px-md-2 pb-3">
-            <!-- <remaning-macros /> -->
+            <remaining-macros />
           </b-col>
           <b-col md="4" class="px-4 px-md-2 pb-3">
             <macros-calculator />
@@ -37,7 +37,7 @@ import MacrosCalculator from './MacrosCalculator.vue';
 import WeightProgress from './WeightProgress.vue';
 import WeekProgress from './WeekProgress.vue';
 import RemainingCalories from './RemainingCalories.vue';
-// import RemaningMacros from './RemainingMacros.vue';
+import RemainingMacros from './RemainingMacros.vue';
 
 @Component({
   components: {
@@ -45,7 +45,7 @@ import RemainingCalories from './RemainingCalories.vue';
     WeightProgress,
     WeekProgress,
     RemainingCalories,
-    // RemaningMacros,
+    RemainingMacros,
   },
 })
 export default class DashboardView extends Vue {}
