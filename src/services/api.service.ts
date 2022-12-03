@@ -49,12 +49,28 @@ export default class ApiService {
 
   async postDiaryEntry(
     username: string,
-    data: Partial<IDiaryEntry>
+    data: Partial<IDiaryEntry> | any
   ): Promise<IUser> {
     // console.log('postDiaryEntry', data);
 
     const url = `${this.url}/users/${username}/diary`;
     const httpResponse = await this.$http.post(url, data, this.defaultConfig);
+    return httpResponse.data;
+  }
+
+  async getFoodList() {
+    // console.log('getFoodList');
+
+    const url = `${this.url}/food-list`;
+    const httpResponse = await this.$http.get(url, this.defaultConfig);
+    return httpResponse.data;
+  }
+
+  async getFoodItem(name: string) {
+    // console.log('getFoodItem', name);
+
+    const url = `${this.url}/food-list/${name}`;
+    const httpResponse = await this.$http.get(url, this.defaultConfig);
     return httpResponse.data;
   }
 }
