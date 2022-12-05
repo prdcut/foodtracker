@@ -8,16 +8,44 @@
         <!-- First row -->
         <b-row>
           <b-col md="6" class="px-4 px-md-2 pb-3">
-            <breakfast-card />
+            <diary-meal
+              cardTitle="breakfast"
+              :mealFoodList="todayBreakfast"
+              :mealTotalCalories="loggedCaloriesBreakfast"
+              mealName="breakfast"
+              foodItemMeal="foodItemBreakfast"
+            />
           </b-col>
-          <b-col md="6" class="px-4 px-md-2 pb-3"> <lunch-card /> </b-col>
-          <!-- {{ diaryEntry }}
-          {{ diaryEntryId }}!! -->
+          <b-col md="6" class="px-4 px-md-2 pb-3">
+            <diary-meal
+              cardTitle="lunch"
+              :mealFoodList="todayLunch"
+              :mealTotalCalories="loggedCaloriesLunch"
+              mealName="lunch"
+              foodItemMeal="foodItemLunch"
+            />
+          </b-col>
         </b-row>
         <!-- Second row -->
         <b-row>
-          <b-col md="6" class="px-4 px-md-2 pb-3"> <dinner-card /> </b-col>
-          <b-col md="6" class="px-4 px-md-2 pb-3"> <snacks-card /> </b-col>
+          <b-col md="6" class="px-4 px-md-2 pb-3">
+            <diary-meal
+              cardTitle="dinner"
+              :mealFoodList="todayDinner"
+              :mealTotalCalories="loggedCaloriesDinner"
+              mealName="dinner"
+              foodItemMeal="foodItemDinner"
+            />
+          </b-col>
+          <b-col md="6" class="px-4 px-md-2 pb-3">
+            <diary-meal
+              cardTitle="snacks"
+              :mealFoodList="todaySnacks"
+              :mealTotalCalories="loggedCaloriesSnacks"
+              mealName="snacks"
+              foodItemMeal="foodItemSnacks"
+            />
+          </b-col>
         </b-row>
       </b-col>
     </b-row>
@@ -27,17 +55,11 @@
 <script lang="ts">
 import { Component } from 'vue-property-decorator';
 import DashboardBaseComponent from './DiaryBase';
-import BreakfastCard from './BreakfastCard.vue';
-import LunchCard from './LunchCard.vue';
-import DinnerCard from './DinnerCard.vue';
-import SnacksCard from './SnacksCard.vue';
+import DiaryMeal from './DiaryMeal.vue';
 
 @Component({
   components: {
-    BreakfastCard,
-    LunchCard,
-    DinnerCard,
-    SnacksCard,
+    DiaryMeal,
   },
 })
 export default class DiaryView extends DashboardBaseComponent {}

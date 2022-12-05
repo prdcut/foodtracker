@@ -58,6 +58,14 @@ export default class ApiService {
     return httpResponse.data;
   }
 
+  async deleteDiaryEntry(diaryId: string): Promise<IUser> {
+    // console.log('deleteDiaryEntry', diaryId);
+
+    const url = `${this.url}/users/${diaryId}`;
+    const httpResponse = await this.$http.delete(url, this.defaultConfig);
+    return httpResponse.data;
+  }
+
   async getFoodList() {
     // console.log('getFoodList');
 

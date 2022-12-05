@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-modal
-      id="addFoodModal"
+      :id="addFoodModalId"
       footer-border-variant="white"
       header-border-variant="white"
       hide-footer
@@ -51,7 +51,7 @@
                   </div>
                   <div class="ms-auto my-auto">
                     <b-button
-                      v-b-modal.foodItem
+                      v-b-modal="foodItemModalId"
                       variant="link"
                       class="p-0"
                       @click="loadFoodItem(food.name)"
@@ -74,7 +74,7 @@
     </b-modal>
 
     <b-modal
-      id="foodItem"
+      :id="foodItemModalId"
       footer-border-variant="white"
       header-border-variant="white"
       hide-footer
@@ -89,7 +89,7 @@
       </template>
 
       <b-row class="d-flex justify-content-between align-items-center">
-        <template v-if="!foodItem">
+        <template v-if="loading">
           <b-spinner
             variant="primary"
             style="width: 3rem; height: 3rem"
@@ -97,7 +97,7 @@
           />
         </template>
 
-        <template v-else>
+        <template v-if="foodItem">
           <b-row>
             <b-col>
               <food-item-chart
@@ -297,6 +297,12 @@ export default class AddFoodComponent extends DiaryBaseComponent {
   @Prop({ default: '' })
   title!: string;
 
+  @Prop({ default: '' })
+  addFoodModalId!: string;
+
+  @Prop({ default: '' })
+  foodItemModalId!: string;
+
   get sumTotalMacros() {
     if (this.foodItem)
       return this.foodItem.protein! + this.foodItem.carbs! + this.foodItem.fat!;
@@ -374,12 +380,12 @@ export default class AddFoodComponent extends DiaryBaseComponent {
     );
     this.foodItem = null;
     // this.loadUser();
-    this.$bvModal.hide('foodItem');
+    this.$bvModal.hide(`${this.foodItemModalId}`);
   }
 
   backToFoodList() {
     this.foodItem = null;
-    this.$bvModal.hide('foodItem');
+    this.$bvModal.hide('foodItemModalId');
   }
 
   calcPercentage(a: number, b: number) {

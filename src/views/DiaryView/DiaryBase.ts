@@ -16,6 +16,7 @@ export default class DashboardBaseComponent extends Vue {
   protected loading = false;
   protected userProfile: Partial<IUser> | null = null;
   protected foodItem: IFood | null = null;
+  protected diaryId = '';
 
   get DATES() {
     return dates;
@@ -23,6 +24,54 @@ export default class DashboardBaseComponent extends Vue {
 
   get username() {
     return localStorage.getItem('user')!.slice(1, -1);
+  }
+
+  get todayBreakfast() {
+    return this.filterFoodDiary('breakfast');
+  }
+
+  get todayLunch() {
+    return this.filterFoodDiary('lunch');
+  }
+
+  get todayDinner() {
+    return this.filterFoodDiary('dinner');
+  }
+
+  get todaySnacks() {
+    return this.filterFoodDiary('snacks');
+  }
+
+  get loggedCaloriesBreakfast() {
+    if (this.todayBreakfast)
+      return this.todayBreakfast!.map((x) => x.nutritionalCont?.calories)
+        .reduce((sum, x) => sum! + x!, 0)!
+        .toFixed();
+    return null;
+  }
+
+  get loggedCaloriesLunch() {
+    if (this.todayLunch)
+      return this.todayLunch!.map((x) => x.nutritionalCont?.calories)
+        .reduce((sum, x) => sum! + x!, 0)!
+        .toFixed();
+    return null;
+  }
+
+  get loggedCaloriesDinner() {
+    if (this.todayLunch)
+      return this.todayDinner!.map((x) => x.nutritionalCont?.calories)
+        .reduce((sum, x) => sum! + x!, 0)!
+        .toFixed();
+    return null;
+  }
+
+  get loggedCaloriesSnacks() {
+    if (this.todaySnacks)
+      return this.todaySnacks!.map((x) => x.nutritionalCont?.calories)
+        .reduce((sum, x) => sum! + x!, 0)!
+        .toFixed();
+    return null;
   }
 
   validationState({
@@ -79,12 +128,53 @@ export default class DashboardBaseComponent extends Vue {
 
       if (data) {
         this.userProfile = data;
+
+        // this.$bvToast.toast('Food logged!', {
+        //   variant: 'info',
+        //   solid: true,
+        //   autoHideDelay: 3500,
+        //   noCloseButton: true,
+        // });
+        this.$router.go(0);
       }
     } catch (error) {
       console.log(error);
+      this.$bvToast.toast('Something went wrong!', {
+        variant: 'danger',
+        solid: true,
+        autoHideDelay: 3500,
+        noCloseButton: true,
+      });
     }
 
     this.loading = false;
+  }
+
+  async deleteFoodDiaryEntry(diaryId: string) {
+    // console.log('deleteFoodDiaryEntry');
+
+    try {
+      const data = await this.apiService.deleteDiaryEntry(diaryId);
+
+      if (data) {
+        this.userProfile = data;
+        // this.$bvToast.toast('Food deleted', {
+        //   variant: 'info',
+        //   solid: true,
+        //   autoHideDelay: 3500,
+        //   noCloseButton: true,
+        // });
+        this.$router.go(0);
+      }
+    } catch (error) {
+      console.log(error);
+      this.$bvToast.toast('Something went wrong!', {
+        variant: 'danger',
+        solid: true,
+        autoHideDelay: 3500,
+        noCloseButton: true,
+      });
+    }
   }
 
   async loadFoodItem(name: string) {
