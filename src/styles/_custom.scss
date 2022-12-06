@@ -44,14 +44,14 @@ hr {
   border-top: 0px;
 }
 
-td {
-  font-size: 16px;
+th {
+  font-size: 15px;
   font-family: 'SGT Jhon O', sans-serif;
+  font-weight: normal;
 }
 
-th {
+td {
   font-size: 14px;
-  font-family: 'SGT Jhon O', sans-serif;
 }
 
 tr {
@@ -101,4 +101,8 @@ tr {
 
 .modal-body {
   padding-top: 0;
+}
+
+.toast:not(.show) {
+  display: block;
 }

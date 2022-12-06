@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosStatic } from 'axios';
-import { IDiaryEntry, IMacros, IUser } from '@/models/model';
+import { IDiaryEntry, IMacros, IUser, IFood } from '@/models/model';
 
 export default class ApiService {
   protected url = 'https://foodtrackbackend.herokuapp.com';
@@ -79,6 +79,30 @@ export default class ApiService {
 
     const url = `${this.url}/food-list/${name}`;
     const httpResponse = await this.$http.get(url, this.defaultConfig);
+    return httpResponse.data;
+  }
+
+  async postFoodItem(data: Partial<IFood>): Promise<IFood> {
+    // console.log('postFoodItem', data);
+
+    const url = `${this.url}/food-list`;
+    const httpResponse = await this.$http.post(url, data, this.defaultConfig);
+    return httpResponse.data;
+  }
+
+  async putFoodItem(data: Partial<IFood>): Promise<IFood> {
+    // console.log('putFoodItem', data);
+
+    const url = `${this.url}/food-list/${data.name}`;
+    const httpResponse = await this.$http.put(url, data, this.defaultConfig);
+    return httpResponse.data;
+  }
+
+  async deleteFoodItem(name: string): Promise<IFood> {
+    // console.log('deleteFoodItem', name);
+
+    const url = `${this.url}/food-list/${name}`;
+    const httpResponse = await this.$http.delete(url, this.defaultConfig);
     return httpResponse.data;
   }
 }

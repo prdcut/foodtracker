@@ -21,6 +21,7 @@ import {
   uniPercentage,
   uniPlusCircle,
   uniTimes,
+  uniSearch,
 } from 'vue-unicons/dist/icons';
 
 Unicon.add([
@@ -34,6 +35,7 @@ Unicon.add([
   uniPercentage,
   uniPlusCircle,
   uniTimes,
+  uniSearch,
 ]);
 Vue.use(Unicon, {});
 
