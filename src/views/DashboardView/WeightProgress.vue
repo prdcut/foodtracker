@@ -38,7 +38,8 @@
                       size="sm"
                       :state="validationState(validationContext)"
                     ></b-form-input>
-                    <b-input-group-append>
+
+                    <!-- <b-input-group-append>
                       <b-button
                         size="sm"
                         v-b-tooltip.hover
@@ -59,12 +60,36 @@
                       >
                         <unicon name="save" />
                       </b-button>
-                    </b-input-group-append>
+                    </b-input-group-append> -->
+
                     <b-form-invalid-feedback>
                       {{ validationContext.errors.find((x) => !!x) }}
                     </b-form-invalid-feedback>
                   </b-input-group>
                 </validation-provider>
+              </b-col>
+            </b-row>
+            <b-row class="d-flex">
+              <b-col>
+                <b-button
+                  size="sm"
+                  variant="outline-secondary"
+                  class="mx-auto mt-1 w-100"
+                  @click="createWeightDiaryEntry"
+                >
+                  Weight Diary Entry
+                </b-button>
+              </b-col>
+              <b-col>
+                <b-button
+                  size="sm"
+                  variant="secondary"
+                  class="mt-1 text-light w-100"
+                  type="submit"
+                  @click="updateCurrentWeight"
+                >
+                  Set Current Weight
+                </b-button>
               </b-col>
             </b-row>
           </b-form>
@@ -141,6 +166,7 @@ export default class WeightProgressComponent extends DashboardBaseComponent {
 
       if (data) {
         this.userProfile = data;
+        this.$router.go(0);
       }
     } catch (error) {
       console.log(error);
@@ -161,6 +187,7 @@ export default class WeightProgressComponent extends DashboardBaseComponent {
 
       if (data) {
         this.userProfile = data;
+        this.$router.go(0);
       }
     } catch (error) {
       console.log(error);

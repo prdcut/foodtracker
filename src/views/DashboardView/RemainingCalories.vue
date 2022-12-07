@@ -13,11 +13,14 @@
       </template>
 
       <template v-else>
-        <calories-chart :eatenCalories="todayCaloriesPercentage" />
-        <h6 class="text-center mb-0">
-          {{ todayEatenCalories.toFixed() }} /
-          {{ userProfile.macros.calories }} kcal
-        </h6>
+        <template v-if="userProfile.macros === undefined"></template>
+        <template v-else>
+          <calories-chart :eatenCalories="todayCaloriesPercentage" />
+          <p class="text-center mb-0">
+            {{ todayEatenCalories.toFixed() }} /
+            {{ userProfile.macros.calories }} kcal
+          </p>
+        </template>
       </template>
     </b-row>
   </b-card>

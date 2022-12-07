@@ -15,32 +15,36 @@
         />
       </template>
       <template v-else>
-        <b-col>
-          <macros-chart :eatenMacro="todayProteinPercentage" />
-          <h6 class="text-center mb-0">
-            <small>
-              Protein {{ todayEatenProtein.toFixed() }} /
-              {{ userProfile.macros.protein }} g
-            </small>
-          </h6>
-        </b-col>
-        <b-col>
-          <macros-chart :eatenMacro="todayCarbsPercentage" />
-          <h6 class="text-center mb-0">
-            <small>
-              Carbs {{ todayEatenCarbs.toFixed() }} /
-              {{ userProfile.macros.carbs }} g
-            </small>
-          </h6>
-        </b-col>
-        <b-col>
-          <macros-chart :eatenMacro="todayFatPercentage" />
-          <h6 class="text-center mb-0">
-            <small>
-              Fat {{ todayEatenFat.toFixed() }} / {{ userProfile.macros.fat }} g
-            </small>
-          </h6>
-        </b-col>
+        <template v-if="userProfile.macros === undefined"></template>
+        <template v-else>
+          <b-col>
+            <macros-chart :eatenMacro="todayProteinPercentage" />
+            <p class="text-center mb-0">
+              <small>
+                Protein {{ todayEatenProtein.toFixed() }} /
+                {{ userProfile.macros.protein }} g
+              </small>
+            </p>
+          </b-col>
+          <b-col>
+            <macros-chart :eatenMacro="todayCarbsPercentage" />
+            <p class="text-center mb-0">
+              <small>
+                Carbs {{ todayEatenCarbs.toFixed() }} /
+                {{ userProfile.macros.carbs }} g
+              </small>
+            </p>
+          </b-col>
+          <b-col>
+            <macros-chart :eatenMacro="todayFatPercentage" />
+            <p class="text-center mb-0">
+              <small>
+                Fat {{ todayEatenFat.toFixed() }} /
+                {{ userProfile.macros.fat }} g
+              </small>
+            </p>
+          </b-col>
+        </template>
       </template>
     </b-row>
   </b-card>

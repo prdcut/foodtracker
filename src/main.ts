@@ -24,6 +24,7 @@ import {
   uniSearch,
   uniWeight,
   uniTrophy,
+  uniArrowDown,
 } from 'vue-unicons/dist/icons';
 
 Unicon.add([
@@ -40,6 +41,7 @@ Unicon.add([
   uniSearch,
   uniWeight,
   uniTrophy,
+  uniArrowDown,
 ]);
 Vue.use(Unicon, {});
 

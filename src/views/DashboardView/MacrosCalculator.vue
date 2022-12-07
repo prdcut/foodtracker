@@ -49,13 +49,12 @@
             <b-row align-v="center">
               <b-col class="d-flex">
                 <b-button
-                  variant="outline-primary"
-                  class="p-1 mt-1 mx-auto"
-                  v-b-tooltip.hover.bottom
-                  title="Save macros"
+                  size="sm"
+                  variant="secondary"
+                  class="mt-2 w-100 text-light"
                   @click="updateMacros"
                 >
-                  <unicon name="save" />
+                  Set Macros
                 </b-button>
               </b-col>
             </b-row>
@@ -240,6 +239,7 @@ export default class MacroCalculatorComponent extends DashboardBaseComponent {
 
       if (data) {
         this.userProfile = data;
+        this.$router.go(0);
       }
     } catch (error) {
       console.log(error);

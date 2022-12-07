@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 import ApiService from '@/services/api.service';
-import { IUser } from '@/models/model';
+import { User } from '@/models/model';
 import { dates } from '@/libs/dates';
 import { ValidationObserver, ValidationProvider } from 'vee-validate';
 
@@ -14,7 +14,13 @@ import { ValidationObserver, ValidationProvider } from 'vee-validate';
 export default class DashboardBaseComponent extends Vue {
   protected apiService: ApiService = new ApiService();
   protected loading = false;
-  protected userProfile: Partial<IUser> | null = null;
+  protected userProfile: User;
+
+  constructor() {
+    super();
+
+    this.userProfile = new User();
+  }
 
   get DATES() {
     return dates;
