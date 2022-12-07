@@ -103,7 +103,7 @@
                   </div>
                 </b-col>
                 <b-col>
-                  {{ userProfile.birthdate }}
+                  {{ DATES.isoDates.getDateString(userProfile.birthdate) }}
                 </b-col>
               </b-row>
               <b-row>
@@ -565,7 +565,9 @@ export default class ProfileView extends Vue {
       );
 
       if (data) {
-        this.$router.push({ name: 'register' });
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+        this.$router.push({ name: 'login' });
         this.$bvToast.toast('User deleted', {
           variant: 'danger',
           solid: true,
