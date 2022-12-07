@@ -22,6 +22,8 @@ import {
   uniPlusCircle,
   uniTimes,
   uniSearch,
+  uniWeight,
+  uniTrophy,
 } from 'vue-unicons/dist/icons';
 
 Unicon.add([
@@ -36,6 +38,8 @@ Unicon.add([
   uniPlusCircle,
   uniTimes,
   uniSearch,
+  uniWeight,
+  uniTrophy,
 ]);
 Vue.use(Unicon, {});
 

@@ -105,4 +105,20 @@ export default class ApiService {
     const httpResponse = await this.$http.delete(url, this.defaultConfig);
     return httpResponse.data;
   }
+
+  async putUser(username: string, data: Partial<IUser>): Promise<IUser> {
+    // console.log('putUser', username, data);
+
+    const url = `${this.url}/users/${username}`;
+    const httpResponse = await this.$http.put(url, data, this.defaultConfig);
+    return httpResponse.data;
+  }
+
+  async deleteUser(username: string, email: string) {
+    // console.log('deleteUser', username, email);
+
+    const url = `${this.url}/users/${username}/${email}`;
+    const httpResponse = await this.$http.delete(url, this.defaultConfig);
+    return httpResponse.data;
+  }
 }
