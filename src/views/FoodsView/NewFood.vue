@@ -1,117 +1,15 @@
 <template>
-  <div class="h-100">
-    <navbar-component class="mb-3" />
-
-    <!-- Content -->
-    <b-row class="d-flex justify-content-center">
-      <b-col md="6">
-        <b-card border-variant="primary" class="h-100">
-          <!-- Title -->
-          <h5>Food List</h5>
-
-          <!-- First row -->
-          <b-row class="d-flex justify-content-center">
-            <b-col md="8">
-              <b-input-group class="mb-3 align-items-center">
-                <b-button variant="link" class="p-0">
-                  <unicon
-                    name="plus"
-                    v-b-modal.newFoodModal
-                    v-b-tooltip.hover
-                    title="Add new food"
-                  />
-                </b-button>
-                <b-form-input
-                  class="rounded-start"
-                  style="height: 2.13rem"
-                  id="filter-input"
-                  v-model="filter"
-                  type="search"
-                />
-                <b-input-group-append>
-                  <b-button
-                    variant="outline-secondary"
-                    class="rounded-0 rounded-end"
-                    size="sm"
-                    style="height: 2.13rem"
-                  >
-                    <unicon name="times" @click="filter = ''" class="py-auto" />
-                  </b-button>
-                </b-input-group-append>
-              </b-input-group>
-            </b-col>
-          </b-row>
-
-          <!-- Second row -->
-          <b-row>
-            <b-col>
-              <b-table
-                responsive
-                show-empty
-                stacked="md"
-                empty-text="Loading..."
-                label-sort-asc=""
-                label-sort-desc=""
-                label-sort-clear=""
-                :filter="filter"
-                :filter-included-fields="filterOn"
-                :current-page="currPage.page"
-                :per-page="currPage.limit"
-                :items="foodList"
-                :fields="tableColumns"
-                @filtered="onFiltered"
-              >
-                <template #cell(weight)="data">
-                  {{ data.item.weight }}g
-                </template>
-                <template #cell(calories)="data">
-                  {{ data.item.calories }}Kcal
-                </template>
-                <template #cell(protein)="data">
-                  {{ data.item.protein }}g
-                </template>
-                <template #cell(carbs)="data">
-                  {{ data.item.carbs }}g
-                </template>
-                <template #cell(fat)="data"> {{ data.item.fat }}g </template>
-                <template #cell(actions)="row">
-                  <b-button
-                    variant="link"
-                    class="p-0"
-                    @click="editFoodItem(row.item, row.index, $event.target)"
-                  >
-                    <unicon name="edit-alt" width="20px" />
-                  </b-button>
-                  <!-- <edit-food /> -->
-                </template>
-              </b-table>
-              <b-pagination
-                v-model="currPage.page"
-                :total-rows="currPage.total"
-                :per-page="currPage.limit"
-                align="center"
-                size="sm"
-                first-number
-                last-number
-              />
-            </b-col>
-          </b-row>
-        </b-card>
-      </b-col>
-    </b-row>
-    <new-food />
-
-    <!-- Edit food item modal -->
+  <div>
     <b-modal
-      :id="editFoodItemModal.id"
+      id="newFoodModal"
       size="md"
       footer-border-variant="white"
       header-border-variant="white"
       hide-footer
-      @show="buildFoodItem"
+      @show="buildNewFoodItem"
     >
       <template #modal-header="{ close }">
-        <h4>Edit {{ foodItemToEdit.name }}</h4>
+        <h4>New Food</h4>
 
         <b-button size="sm" variant="link" @click="close()">
           <unicon name="times" />
@@ -123,7 +21,7 @@
           <validation-observer v-slot="{ handleSubmit }">
             <b-form
               class="h-100 mt-2"
-              @submit.prevent="handleSubmit(updateFoodItem)"
+              @submit.prevent="handleSubmit(createFoodItem)"
               novalidate
             >
               <b-row align-v="center">
@@ -131,14 +29,25 @@
                   <label>Name</label>
                 </b-col>
                 <b-col>
-                  <b-form-group>
-                    <b-form-input
-                      class="input"
-                      v-model="foodItemToEdit.name"
-                      readonly
-                      type="text"
-                    ></b-form-input>
-                  </b-form-group>
+                  <validation-provider
+                    v-slot="validationContext"
+                    name="Name"
+                    :rules="{ required: true, alpha: true, max: 12 }"
+                  >
+                    <b-form-group>
+                      <b-form-input
+                        class="input"
+                        v-model="newFoodItem.name"
+                        id="name"
+                        type="text"
+                        autocomplete="off"
+                        :state="validationState(validationContext)"
+                      ></b-form-input>
+                      <b-form-invalid-feedback>
+                        {{ validationContext.errors.find((x) => !!x) }}
+                      </b-form-invalid-feedback>
+                    </b-form-group>
+                  </validation-provider>
                 </b-col>
               </b-row>
 
@@ -150,13 +59,15 @@
                   <validation-provider
                     v-slot="validationContext"
                     name="Weight"
-                    :rules="{ numeric: true, max: 5 }"
+                    :rules="{ required: true, numeric: true, max: 5 }"
                   >
                     <b-form-group>
                       <b-form-input
                         class="input"
-                        v-model="foodItemToEdit.weight"
+                        v-model="newFoodItem.weight"
+                        id="weight"
                         type="text"
+                        autocomplete="off"
                         :state="validationState(validationContext)"
                       ></b-form-input>
                       <b-form-invalid-feedback>
@@ -180,8 +91,10 @@
                     <b-form-group>
                       <b-form-input
                         class="input"
-                        v-model="foodItemToEdit.quantity"
+                        v-model="newFoodItem.quantity"
+                        id="quantity"
                         type="text"
+                        autocomplete="off"
                         :state="validationState(validationContext)"
                       ></b-form-input>
                       <b-form-invalid-feedback>
@@ -200,13 +113,15 @@
                   <validation-provider
                     v-slot="validationContext"
                     name="Protein"
-                    :rules="{ numeric: true, max: 5 }"
+                    :rules="{ required: true, numeric: true, max: 5 }"
                   >
                     <b-form-group>
                       <b-form-input
                         class="input"
-                        v-model="foodItemToEdit.protein"
+                        v-model="newFoodItem.protein"
+                        id="protein"
                         type="text"
+                        autocomplete="off"
                         :state="validationState(validationContext)"
                       ></b-form-input>
                       <b-form-invalid-feedback>
@@ -225,13 +140,15 @@
                   <validation-provider
                     v-slot="validationContext"
                     name="Carbs"
-                    :rules="{ numeric: true, max: 5 }"
+                    :rules="{ required: true, numeric: true, max: 5 }"
                   >
                     <b-form-group>
                       <b-form-input
                         class="input"
-                        v-model="foodItemToEdit.carbs"
+                        v-model="newFoodItem.carbs"
+                        id="carbs"
                         type="text"
+                        autocomplete="off"
                         :state="validationState(validationContext)"
                       ></b-form-input>
                       <b-form-invalid-feedback>
@@ -250,13 +167,15 @@
                   <validation-provider
                     v-slot="validationContext"
                     name="Fat"
-                    :rules="{ numeric: true, max: 5 }"
+                    :rules="{ required: true, numeric: true, max: 5 }"
                   >
                     <b-form-group>
                       <b-form-input
                         class="input"
-                        v-model="foodItemToEdit.fat"
+                        v-model="newFoodItem.fat"
+                        id="fat"
                         type="text"
+                        autocomplete="off"
                         :state="validationState(validationContext)"
                       ></b-form-input>
                       <b-form-invalid-feedback>
@@ -275,13 +194,15 @@
                   <validation-provider
                     v-slot="validationContext"
                     name="Calories"
-                    :rules="{ numeric: true, max: 5 }"
+                    :rules="{ required: true, numeric: true, max: 5 }"
                   >
                     <b-form-group>
                       <b-form-input
                         class="input"
-                        v-model="foodItemToEdit.calories"
+                        v-model="newFoodItem.calories"
+                        id="calories"
                         type="text"
+                        autocomplete="off"
                         :state="validationState(validationContext)"
                       ></b-form-input>
                       <b-form-invalid-feedback>
@@ -300,7 +221,7 @@
                     variant="outline-secondary"
                     class="mx-auto mt-3"
                     style="width: 95%"
-                    @click="cancelFoodItemToEdit"
+                    @click="cancelNewFood"
                   >
                     Cancel
                   </b-button>
@@ -313,7 +234,7 @@
                     style="width: 95%"
                     type="submit"
                   >
-                    Edit
+                    Add
                   </b-button>
                 </b-col>
               </b-row>
@@ -328,12 +249,23 @@
 <script lang="ts">
 import { Component } from 'vue-property-decorator';
 import FoodsBaseComponent from './FoodsBase';
-import NewFood from './NewFood.vue';
+import { Food } from '@/models/model';
 
 @Component({
-  components: {
-    NewFood,
-  },
+  components: {},
 })
-export default class FoodsView extends FoodsBaseComponent {}
+export default class NewFoodComponent extends FoodsBaseComponent {
+  buildNewFoodItem(modal: string) {
+    this.foodItem = new Food();
+
+    this.$nextTick(() => {
+      this.$bvModal.show(modal);
+    });
+  }
+
+  cancelNewFood() {
+    this.newFoodItem = new Food();
+    this.$bvModal.hide('newFoodModal');
+  }
+}
 </script>
