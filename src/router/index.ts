@@ -1,14 +1,14 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
-import DashboardView from '../views/DashboardView/DashboardView.vue';
+import LoginView from '../views/LoginView.vue';
 
 Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
   {
     path: '/',
-    name: 'dashboard',
-    component: DashboardView,
+    name: 'login',
+    component: LoginView,
   },
   {
     path: '/register',
@@ -19,6 +19,11 @@ const routes: Array<RouteConfig> = [
     path: '/login',
     name: 'login',
     component: () => import('../views/LoginView.vue'),
+  },
+  {
+    path: '/dashboard',
+    name: 'dashboard',
+    component: () => import('../views/DashboardView/DashboardView.vue'),
   },
   {
     path: '/diary',

@@ -188,5 +188,12 @@ export default class LoginView extends Vue {
 
     this.loading = false;
   }
+
+  mounted() {
+    const user = localStorage.getItem('user');
+    if (user) {
+      this.$router.push({ name: 'dashboard' });
+    }
+  }
 }
 </script>

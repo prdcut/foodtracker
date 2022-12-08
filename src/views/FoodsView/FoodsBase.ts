@@ -243,4 +243,11 @@ export default class DashboardBaseComponent extends Vue {
   created() {
     this.loadFoodList();
   }
+
+  mounted() {
+    const user = localStorage.getItem('user');
+    if (!user) {
+      this.$router.push({ name: 'login' });
+    }
+  }
 }

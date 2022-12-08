@@ -587,8 +587,14 @@ export default class ProfileView extends Vue {
   }
 
   created() {
-    // console.log('created');
     this.loadUser();
+  }
+
+  mounted() {
+    const user = localStorage.getItem('user');
+    if (!user) {
+      this.$router.push({ name: 'login' });
+    }
   }
 }
 </script>
