@@ -119,7 +119,7 @@
 import DashboardBaseComponent from './DashboardBase';
 import VueApexCharts from 'vue-apexcharts';
 import { Component } from 'vue-property-decorator';
-import WeightChart from './WeightChart.vue';
+import WeightChart from './WeightProgressChart.vue';
 
 @Component({
   components: {
