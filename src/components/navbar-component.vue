@@ -28,14 +28,27 @@
           <small>Profile</small>
         </div>
       </b-nav-item>
+
+      <b-nav-item href="/login">
+        <div class="d-flex flex-column align-items-center">
+          <unicon name="signout" fill="#e9eef4" @click="signout" />
+          <small>Signout</small>
+        </div>
+      </b-nav-item>
     </b-navbar-nav>
   </b-navbar>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import { Component } from "vue-property-decorator";
+import Vue from 'vue';
+import { Component } from 'vue-property-decorator';
 
 @Component({})
-export default class NavbarComponent extends Vue {}
+export default class NavbarComponent extends Vue {
+  signout() {
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
+    this.$router.push({ name: 'login' });
+  }
+}
 </script>
