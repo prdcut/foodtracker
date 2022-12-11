@@ -59,7 +59,7 @@
                   <validation-provider
                     v-slot="validationContext"
                     name="Weight"
-                    :rules="{ required: true, numeric: true, max: 5 }"
+                    :rules="{ required: true, max: 6, regex: /^(\d*\.)?\d+$/ }"
                   >
                     <b-form-group>
                       <b-form-input
@@ -113,7 +113,7 @@
                   <validation-provider
                     v-slot="validationContext"
                     name="Protein"
-                    :rules="{ required: true, numeric: true, max: 5 }"
+                    :rules="{ required: true, max: 6, regex: /^(\d*\.)?\d+$/ }"
                   >
                     <b-form-group>
                       <b-form-input
@@ -140,7 +140,7 @@
                   <validation-provider
                     v-slot="validationContext"
                     name="Carbs"
-                    :rules="{ required: true, numeric: true, max: 5 }"
+                    :rules="{ required: true, max: 6, regex: /^(\d*\.)?\d+$/ }"
                   >
                     <b-form-group>
                       <b-form-input
@@ -167,7 +167,7 @@
                   <validation-provider
                     v-slot="validationContext"
                     name="Fat"
-                    :rules="{ required: true, numeric: true, max: 5 }"
+                    :rules="{ required: true, max: 6, regex: /^(\d*\.)?\d+$/ }"
                   >
                     <b-form-group>
                       <b-form-input
@@ -194,7 +194,7 @@
                   <validation-provider
                     v-slot="validationContext"
                     name="Calories"
-                    :rules="{ required: true, numeric: true, max: 5 }"
+                    :rules="{ required: true, max: 6, regex: /^(\d*\.)?\d+$/ }"
                   >
                     <b-form-group>
                       <b-form-input

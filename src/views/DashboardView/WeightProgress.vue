@@ -27,7 +27,7 @@
                 <validation-provider
                   v-slot="validationContext"
                   name="Weight"
-                  :rules="{ numeric: true, max: 3 }"
+                  :rules="{ max: 6, regex: /^(\d*\.)?\d+$/ }"
                 >
                   <b-input-group>
                     <b-form-input
@@ -38,29 +38,6 @@
                       size="sm"
                       :state="validationState(validationContext)"
                     ></b-form-input>
-
-                    <!-- <b-input-group-append>
-                      <b-button
-                        size="sm"
-                        v-b-tooltip.hover
-                        title="Weight diary entry"
-                        v-b-toggle.enterWeight
-                        variant="outline-secondary"
-                        @click="createWeightDiaryEntry"
-                      >
-                        <unicon name="diary" />
-                      </b-button>
-                      <b-button
-                        size="sm"
-                        v-b-tooltip.hover
-                        title="Update current weight"
-                        v-b-toggle.enterWeight
-                        variant="outline-primary"
-                        @click="updateCurrentWeight"
-                      >
-                        <unicon name="save" />
-                      </b-button>
-                    </b-input-group-append> -->
 
                     <b-form-invalid-feedback>
                       {{ validationContext.errors.find((x) => !!x) }}
