@@ -32,13 +32,6 @@ export default defineComponent({
           sparkline: {
             enabled: true,
           },
-          dropShadow: {
-            enabled: true,
-            blur: 3,
-            left: 1,
-            top: 1,
-            opacity: 0.1,
-          },
         },
         colors: ['#e65c4f'],
         plotOptions: {

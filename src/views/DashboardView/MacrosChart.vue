@@ -1,7 +1,7 @@
 <template>
   <b-card no-body border-variant="white">
     <vue-apex-charts
-      height="120"
+      height="110"
       :options="macrosChart"
       :series="series"
       :eatenMacro="eatenMacro"
@@ -31,13 +31,6 @@ export default defineComponent({
           type: 'radialBar',
           sparkline: {
             enabled: true,
-          },
-          dropShadow: {
-            enabled: true,
-            blur: 3,
-            left: 1,
-            top: 1,
-            opacity: 0.1,
           },
         },
         colors: ['#78a6c8'],
