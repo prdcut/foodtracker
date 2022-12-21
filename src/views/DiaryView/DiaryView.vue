@@ -4,7 +4,7 @@
 
     <!-- Content -->
     <b-row class="d-flex justify-content-center">
-      <b-col md="6">
+      <b-col xl="7" md="11">
         <!-- First row -->
         <b-row>
           <b-col md="6" class="px-4 px-md-2 pb-3">

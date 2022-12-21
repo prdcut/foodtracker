@@ -1,6 +1,6 @@
 <template>
   <b-row class="d-flex justify-content-center h-100">
-    <b-col class="my-auto" md="4">
+    <b-col class="my-auto" xl="5" lg="6" md="8">
       <b-card border-variant="primary">
         <!-- Error alert -->
         <b-row>

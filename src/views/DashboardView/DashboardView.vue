@@ -16,7 +16,7 @@
       </template>
 
       <template v-else>
-        <b-col md="9">
+        <b-col xl="9" md="11">
           <!-- First row -->
           <b-row>
             <b-col md="4" class="px-4 px-md-2 pb-3">

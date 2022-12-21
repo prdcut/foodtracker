@@ -1,12 +1,10 @@
 <template>
-  <b-card no-body border-variant="white">
-    <vue-apex-charts
-      height="165"
-      :options="weekChartOptions"
-      :series="series"
-      :categories="datesCategories"
-    />
-  </b-card>
+  <vue-apex-charts
+    height="165"
+    :options="weekChartOptions"
+    :series="series"
+    :categories="datesCategories"
+  />
 </template>
 
 <script lang="ts">

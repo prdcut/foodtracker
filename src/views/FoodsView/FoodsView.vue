@@ -4,7 +4,7 @@
 
     <!-- Content -->
     <b-row class="d-flex justify-content-center">
-      <b-col md="6">
+      <b-col xl="7" md="11">
         <b-card border-variant="primary" class="h-100">
           <!-- Title -->
           <h5>Food List</h5>

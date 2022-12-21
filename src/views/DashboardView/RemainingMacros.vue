@@ -21,8 +21,9 @@
             <macros-chart :eatenMacro="todayProteinPercentage" />
             <p class="text-center mb-0">
               <small>
-                Protein {{ todayEatenProtein.toFixed() }} /
-                {{ userProfile.macros.protein }} g
+                Protein<br />
+                {{ todayEatenProtein.toFixed() }}
+                / {{ userProfile.macros.protein }} g
               </small>
             </p>
           </b-col>
@@ -30,7 +31,8 @@
             <macros-chart :eatenMacro="todayCarbsPercentage" />
             <p class="text-center mb-0">
               <small>
-                Carbs {{ todayEatenCarbs.toFixed() }} /
+                Carbs<br />
+                {{ todayEatenCarbs.toFixed() }} /
                 {{ userProfile.macros.carbs }} g
               </small>
             </p>
@@ -39,8 +41,8 @@
             <macros-chart :eatenMacro="todayFatPercentage" />
             <p class="text-center mb-0">
               <small>
-                Fat {{ todayEatenFat.toFixed() }} /
-                {{ userProfile.macros.fat }} g
+                Fat<br />
+                {{ todayEatenFat.toFixed() }} / {{ userProfile.macros.fat }} g
               </small>
             </p>
           </b-col>

@@ -4,7 +4,7 @@
 
     <!-- Content -->
     <b-row class="d-flex justify-content-center">
-      <b-col md="3">
+      <b-col xl="3" md="5">
         <b-card border-variant="primary" class="h-100">
           <template v-if="loading">
             <div class="d-flex">
