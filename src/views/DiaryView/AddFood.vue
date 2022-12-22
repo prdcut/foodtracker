@@ -19,7 +19,7 @@
       <b-tabs justified small>
         <b-tab active>
           <template #title>
-            <h6 class="mb-0">food list</h6>
+            <h6 class="mb-0">Food List</h6>
           </template>
 
           <template v-if="loading">
@@ -65,10 +65,136 @@
           </template>
         </b-tab>
 
-        <b-tab disabled>
+        <b-tab>
           <template #title>
-            <h6 class="mb-0">meals</h6>
+            <h6 class="mb-0">Meals</h6>
           </template>
+          <b-row class="d-flex">
+            <h6 class="mb-0 mt-3">Yesterday's {{ title }}</h6>
+            <template v-if="yesterdayBreakfast && title === 'breakfast'">
+              <b-card
+                no-body
+                class="p-2 mt-3 mx-auto"
+                border-variant="primary"
+                v-for="(food, index) in yesterdayBreakfast"
+                :key="index"
+                style="width: 45%"
+              >
+                <div class="d-flex">
+                  <div>
+                    <h6 class="mb-0">{{ food.nutritionalCont.name }}</h6>
+                    <p class="mb-0 text-muted">
+                      {{ food.nutritionalCont.calories }} cal
+                    </p>
+                  </div>
+                  <div class="ms-auto my-auto">
+                    {{ food.nutritionalCont.weight }} g
+                  </div>
+                </div>
+              </b-card>
+              <b-button
+                size="sm"
+                variant="secondary"
+                class="mx-auto mt-3 text-light w-50"
+                @click="addYesterdaysMeal(yesterdayBreakfast)"
+              >
+                Add
+              </b-button>
+            </template>
+
+            <template v-if="yesterdayLunch && title === 'lunch'">
+              <b-card
+                no-body
+                class="p-2 mt-3 mx-auto"
+                border-variant="primary"
+                v-for="(food, index) in yesterdayLunch"
+                :key="index"
+                style="width: 45%"
+              >
+                <div class="d-flex">
+                  <div>
+                    <h6 class="mb-0">{{ food.nutritionalCont.name }}</h6>
+                    <p class="mb-0 text-muted">
+                      {{ food.nutritionalCont.calories }} cal
+                    </p>
+                  </div>
+                  <div class="ms-auto my-auto">
+                    {{ food.nutritionalCont.weight }} g
+                  </div>
+                </div>
+              </b-card>
+              <b-button
+                size="sm"
+                variant="secondary"
+                class="mx-auto mt-3 text-light w-50"
+                @click="addYesterdaysMeal(yesterdayLunch)"
+              >
+                Add
+              </b-button>
+            </template>
+
+            <template v-if="yesterdayDinner && title === 'dinner'">
+              <b-card
+                no-body
+                class="p-2 mt-3 mx-auto"
+                border-variant="primary"
+                v-for="(food, index) in yesterdayDinner"
+                :key="index"
+                style="width: 45%"
+              >
+                <div class="d-flex">
+                  <div>
+                    <h6 class="mb-0">{{ food.nutritionalCont.name }}</h6>
+                    <p class="mb-0 text-muted">
+                      {{ food.nutritionalCont.calories }} cal
+                    </p>
+                  </div>
+                  <div class="ms-auto my-auto">
+                    {{ food.nutritionalCont.weight }} g
+                  </div>
+                </div>
+              </b-card>
+              <b-button
+                size="sm"
+                variant="secondary"
+                class="mx-auto mt-3 text-light w-50"
+                @click="addYesterdaysMeal(yesterdayDinner)"
+              >
+                Add
+              </b-button>
+            </template>
+
+            <template v-if="yesterdaySnacks && title === 'snacks'">
+              <b-card
+                no-body
+                class="p-2 mt-3 mx-auto"
+                border-variant="primary"
+                v-for="(food, index) in yesterdaySnacks"
+                :key="index"
+                style="width: 45%"
+              >
+                <div class="d-flex">
+                  <div>
+                    <h6 class="mb-0">{{ food.nutritionalCont.name }}</h6>
+                    <p class="mb-0 text-muted">
+                      {{ food.nutritionalCont.calories }} cal
+                    </p>
+                  </div>
+                  <div class="ms-auto my-auto">
+                    {{ food.nutritionalCont.weight }} g
+                  </div>
+                </div>
+              </b-card>
+              <b-button
+                size="sm"
+                variant="secondary"
+                class="mx-auto mt-3 text-light w-50"
+                @click="addYesterdaysMeal(yesterdaySnacks)"
+              >
+                Add
+              </b-button>
+            </template>
+          </b-row>
         </b-tab>
       </b-tabs>
     </b-modal>
@@ -365,6 +491,34 @@ export default class AddFoodComponent extends DiaryBaseComponent {
     if (this.foodItem && this.inputWeight)
       return ((macro * this.inputWeight) / 100).toFixed(1);
     return null;
+  }
+
+  addYesterdaysMeal(meal: any) {
+    meal.forEach(
+      (x: {
+        diaryMeal: string;
+        nutritionalCont: {
+          name: string;
+          weight: number;
+          quantity: string | number;
+          protein: number;
+          carbs: number;
+          fat: number;
+          calories: number;
+        };
+      }) => {
+        this.createFoodDiaryEntry(
+          x.diaryMeal,
+          x.nutritionalCont.name,
+          x.nutritionalCont.weight,
+          x.nutritionalCont.quantity,
+          x.nutritionalCont.protein,
+          x.nutritionalCont.carbs,
+          x.nutritionalCont.fat,
+          x.nutritionalCont.calories
+        );
+      }
+    );
   }
 
   addFoodItem() {

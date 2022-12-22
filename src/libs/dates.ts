@@ -10,5 +10,11 @@ export namespace dates {
     static getDateString(d: any) {
       return new Date(d).toISOString().split('T')[0];
     }
+
+    static getYesterday() {
+      return LocalDate.now()
+        .minusDays(1)
+        .format(DateTimeFormatter.ISO_LOCAL_DATE);
+    }
   }
 }

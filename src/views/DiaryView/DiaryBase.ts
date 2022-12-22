@@ -42,6 +42,22 @@ export default class DashboardBaseComponent extends Vue {
     return this.filterFoodDiary('snacks');
   }
 
+  get yesterdayBreakfast() {
+    return this.filterYesterdayFoodDiary('breakfast');
+  }
+
+  get yesterdayLunch() {
+    return this.filterYesterdayFoodDiary('lunch');
+  }
+
+  get yesterdayDinner() {
+    return this.filterYesterdayFoodDiary('dinner');
+  }
+
+  get yesterdaySnacks() {
+    return this.filterYesterdayFoodDiary('snacks');
+  }
+
   get loggedCaloriesBreakfast() {
     if (this.todayBreakfast)
       return this.todayBreakfast!.map((x) => x.nutritionalCont?.calories)
@@ -91,6 +107,17 @@ export default class DashboardBaseComponent extends Vue {
       return this.userProfile
         .diary!.filter(
           (x) => x.type === 'food' && x.date === this.DATES.isoDates.getToday()
+        )
+        .filter((x) => x.diaryMeal === diaryMeal);
+    return null;
+  }
+
+  filterYesterdayFoodDiary(diaryMeal: string) {
+    if (this.userProfile)
+      return this.userProfile
+        .diary!.filter(
+          (x) =>
+            x.type === 'food' && x.date === this.DATES.isoDates.getYesterday()
         )
         .filter((x) => x.diaryMeal === diaryMeal);
     return null;
@@ -212,6 +239,10 @@ export default class DashboardBaseComponent extends Vue {
   created() {
     // console.log('created');
     this.loadUser();
+    this.yesterdayBreakfast;
+    this.yesterdayLunch;
+    this.yesterdayDinner;
+    this.yesterdaySnacks;
   }
 
   mounted() {
