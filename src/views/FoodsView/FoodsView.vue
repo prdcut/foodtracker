@@ -1,9 +1,7 @@
 <template>
-  <div class="h-100">
-    <navbar-component class="mb-3" />
-
+  <div class="d-flex flex-column h-100">
     <!-- Content -->
-    <b-row class="d-flex justify-content-center">
+    <b-row class="d-flex justify-content-center my-3 mt-sm-5 pt-sm-4">
       <b-col xl="7" md="11">
         <b-card border-variant="primary" class="h-100">
           <!-- Title -->
@@ -322,6 +320,7 @@
         </b-col>
       </b-row>
     </b-modal>
+    <navbar-component class="mt-auto" />
   </div>
 </template>
 

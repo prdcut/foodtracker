@@ -1,5 +1,5 @@
 <template>
-  <b-navbar type="dark" variant="primary" class="py-0">
+  <b-navbar type="dark" variant="primary" class="py-0" :fixed="resolveFixed">
     <b-navbar-nav class="mx-auto">
       <b-nav-item href="/">
         <div class="d-flex flex-column align-items-center">
@@ -45,10 +45,17 @@ import { Component } from 'vue-property-decorator';
 
 @Component({})
 export default class NavbarComponent extends Vue {
+  private screenSize = window.innerWidth;
+
   signout() {
     localStorage.removeItem('user');
     localStorage.removeItem('token');
     this.$router.push({ name: 'login' });
+  }
+
+  get resolveFixed() {
+    if (this.screenSize >= 576) return 'top';
+    return null;
   }
 }
 </script>

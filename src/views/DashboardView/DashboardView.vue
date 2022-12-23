@@ -1,9 +1,7 @@
 <template>
-  <div class="h-100">
-    <navbar-component class="mb-3" />
-
+  <div class="d-flex flex-column h-100">
     <!-- Content -->
-    <b-row class="d-flex justify-content-center">
+    <b-row class="d-flex justify-content-center mt-3 mt-sm-5 pt-sm-4">
       <template v-if="userProfile.macros === undefined">
         <b-col md="4">
           <b-card class="mb-3" border-variant="primary">
@@ -41,6 +39,7 @@
         </b-col>
       </template>
     </b-row>
+    <navbar-component class="mt-auto" />
   </div>
 </template>
 
