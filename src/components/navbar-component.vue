@@ -29,9 +29,9 @@
         </div>
       </b-nav-item>
 
-      <b-nav-item href="/login">
+      <b-nav-item href="/login" @click="signout">
         <div class="d-flex flex-column align-items-center">
-          <unicon name="signout" fill="#e9eef4" @click="signout" />
+          <unicon name="signout" fill="#e9eef4" />
           <small>Signout</small>
         </div>
       </b-nav-item>
