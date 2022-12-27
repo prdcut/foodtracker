@@ -265,7 +265,7 @@
                 <b-row
                   class="d-flex justify-content-center align-items-center text-center"
                 >
-                  <b-col md="9">
+                  <b-col>
                     <b-button
                       variant="primary"
                       class="d-block my-4 w-100 text-light"

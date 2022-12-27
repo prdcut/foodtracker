@@ -377,8 +377,7 @@
                   <b-button
                     size="sm"
                     variant="outline-secondary"
-                    class="mx-auto mt-3"
-                    style="width: 95%"
+                    class="mx-auto mt-3 w-100"
                     @click="backToFoodList"
                   >
                     Cancel
@@ -388,8 +387,7 @@
                   <b-button
                     size="sm"
                     variant="secondary"
-                    class="mx-auto mt-3 text-light"
-                    style="width: 95%"
+                    class="mx-auto mt-3 text-light w-100"
                     type="submit"
                   >
                     Add

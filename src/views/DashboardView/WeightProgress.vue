@@ -29,8 +29,9 @@
                   name="Weight"
                   :rules="{ max: 6, regex: /^(\d*\.)?\d+$/ }"
                 >
-                  <b-input-group>
+                  <b-form-group>
                     <b-form-input
+                      class="input"
                       v-model="newWeight"
                       id="newWeight"
                       type="text"
@@ -42,7 +43,7 @@
                     <b-form-invalid-feedback>
                       {{ validationContext.errors.find((x) => !!x) }}
                     </b-form-invalid-feedback>
-                  </b-input-group>
+                  </b-form-group>
                 </validation-provider>
               </b-col>
             </b-row>

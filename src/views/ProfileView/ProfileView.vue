@@ -211,7 +211,7 @@
       hide-footer
     >
       <template #modal-header="{ close }">
-        <h5>Edit user info</h5>
+        <h5>Edit Profile</h5>
         <b-button size="sm" class="p-0" variant="link" @click="close()">
           <unicon name="times" />
         </b-button>
@@ -242,59 +242,6 @@
                         type="email"
                         :state="validationState(validationContext)"
                       ></b-form-input>
-                      <b-form-invalid-feedback>
-                        {{ validationContext.errors.find((x) => !!x) }}
-                      </b-form-invalid-feedback>
-                    </b-form-group>
-                  </validation-provider>
-                </b-col>
-              </b-row>
-
-              <b-row align-v="center">
-                <b-col sm="3">
-                  <label>Username</label>
-                </b-col>
-                <b-col>
-                  <validation-provider
-                    v-slot="validationContext"
-                    name="Username"
-                    :rules="{ required: true, min: 5, max: 20 }"
-                  >
-                    <b-form-group>
-                      <b-form-input
-                        class="input"
-                        v-model="userProfile.username"
-                        type="text"
-                        :state="validationState(validationContext)"
-                      ></b-form-input>
-                      <b-form-invalid-feedback>
-                        {{ validationContext.errors.find((x) => !!x) }}
-                      </b-form-invalid-feedback>
-                    </b-form-group>
-                  </validation-provider>
-                </b-col>
-              </b-row>
-
-              <hr />
-
-              <b-row align-v="center">
-                <b-col sm="3">
-                  <label>Sex</label>
-                </b-col>
-                <b-col>
-                  <validation-provider
-                    v-slot="validationContext"
-                    name="Sex"
-                    :rules="{ required: true }"
-                  >
-                    <b-form-group>
-                      <v-select
-                        id="v-select"
-                        v-model="userProfile.sex"
-                        :options="sexOptions"
-                        :state="validationState(validationContext)"
-                        :reduce="(sexOptions) => sexOptions.value"
-                      ></v-select>
                       <b-form-invalid-feedback>
                         {{ validationContext.errors.find((x) => !!x) }}
                       </b-form-invalid-feedback>
