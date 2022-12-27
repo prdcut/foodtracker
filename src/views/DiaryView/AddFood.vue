@@ -337,6 +337,7 @@
                         type="text"
                         :placeholder="foodItem ? `${foodItem.weight} g` : ''"
                         :state="validationState(validationContext)"
+                        autocomplete="off"
                       ></b-form-input>
                       <b-form-invalid-feedback>
                         {{ validationContext.errors.find((x) => !!x) }}
