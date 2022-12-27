@@ -19,7 +19,7 @@
         </b-row>
         <!-- Title -->
         <b-row>
-          <h1 class="text-center text-primary display-1">Food Tracker</h1>
+          <h1 class="text-center text-primary display-1">Food Track</h1>
         </b-row>
         <!-- Form -->
         <b-row class="d-flex justify-content-center align-items-center">
